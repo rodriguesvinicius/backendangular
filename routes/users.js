@@ -33,7 +33,7 @@ async function addToDB(req, res) {
 }
 
 
-router.post('/login', isValidUser, function (req, res, next) {
+router.post('/login', deslogado, function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     if (err) { return res.status(501).json(err); }
     if (!user) { return res.status(501).json(info); }
