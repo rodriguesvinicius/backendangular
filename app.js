@@ -11,7 +11,7 @@ const db = require('./config/db')
 var app = express();
 
 app.use(cors({
-  origin: ['http://localhost:4200', 'http://127.0.0.1:4200'],
+  origin: ['https://angularpassportteste.herokuapp.com'],
   credentials: true
 }));
 
