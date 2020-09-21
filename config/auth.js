@@ -8,13 +8,16 @@ module.exports = function(passport) {
     passport.use(new localStrategy({ usernameField: "email", passwordField: "password" }, (username, password, done) => {
         Usuario.findOne({ email: username }).then((user) => {
             if (!user) {
+                console.log("conta nao  existe")
                 return done(null, false, { message: "Esta conta não existe" })
             }
 
             bcrypt.compare(password, user.password, (erro, batem) => {
                 if (batem) {
+                    console.log("senha bate")
                     return done(null, user)
                 } else {
+                    console.log('Senha incorreta')
                     return done(null, false, { message: "Senha Incorreta" })
                 }
             })
