@@ -32,7 +32,7 @@ async function addToDB(req, res) {
 }
 
 
-router.post('/login', isValidUser, function (req, res, next) {
+/*router.post('/login', isValidUser, function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     if (err) { return res.status(501).json(err); }
     if (!user) { return res.status(501).json(info); }
@@ -41,7 +41,16 @@ router.post('/login', isValidUser, function (req, res, next) {
       return res.status(200).json({ message: 'Login Success' });
     });
   })(req, res, next);
-});
+});*/
+
+router.post('/login', (req, res, next) => {
+  passport.authenticate("local", {
+      successRedirect: "/users/user",
+      failureRedirect: "/login",
+      failureFlash: true
+  })(req, res, next)
+
+})
 
 
 // autenticando o usuario nesta rota
