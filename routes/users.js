@@ -43,7 +43,7 @@ router.post('/login',function(req,res,next){
   })(req, res, next);
 });
 
-router.get('/user',isValidUser,function(req,res,next){
+router.get('/user',function(req,res,next){
   return res.status(200).json(req.user);
 });
 
