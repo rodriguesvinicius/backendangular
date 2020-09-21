@@ -12,7 +12,7 @@ var app = express();
 const passport = require('passport')
 
 app.use(cors({
-  origin: ['https://angularpassportteste.herokuapp.com'],
+  origin: ['https://angularpassportteste.herokuapp.com', 'http://localhost:4200', 'http://127.0.0.1:4200'],
   credentials: true
 }));
 
