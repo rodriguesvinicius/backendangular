@@ -9,6 +9,7 @@ var cors = require('cors');
 var mongoose = require('mongoose');
 const db = require('./config/db')
 var app = express();
+const passport = require('passport')
 
 app.use(cors({
   origin: ['https://angularpassportteste.herokuapp.com'],
@@ -40,10 +41,9 @@ app.use(session({
   },
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
-require('./passport-config');
-app.use(passport.initialize());
-app.use(passport.session());
 
+app.use(passport.initialize())
+app.use(passport.session())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
