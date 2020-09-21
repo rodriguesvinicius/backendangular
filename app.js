@@ -24,8 +24,7 @@ mongoose.connect(db.mongoURI, { useNewUrlParser: true }).then(() => {
   console.log("Não foi possivel se conectar" + err)
 })
 
-//passport
-var passport = require('passport');
+
 var session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 app.use(session({
