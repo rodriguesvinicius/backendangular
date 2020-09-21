@@ -2,12 +2,13 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var passport = require('passport');
+const {deslogado} = require('../helper/deslogado')
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
 //   res.send('respond with a resource');
 // });
 
-router.post('/register', function (req, res, next) {
+router.post('/register', function (req, res,) {
   addToDB(req, res);
 });
 
@@ -52,22 +53,15 @@ router.post('/login', (req, res, next) => {
 
 })
 
-
 // autenticando o usuario nesta rota
 
-
-router.get('/user', isValidUser, function (req, res, next) {
+router.get('/user', deslogado, function (req, res) {
   return res.status(200).json(req.user);
 });
 
-router.get('/logout', isValidUser, function (req, res, next) {
+router.get('/logout', deslogado, function (req, res) {
   req.logout();
   return res.status(200).json({ message: 'Logout Success' });
 })
-
-function isValidUser(req, res, next) {
-  if (req.isAuthenticated()) next();
-  else return res.status(401).json({ message: 'Unauthorized Request' });
-}
 
 module.exports = router;
